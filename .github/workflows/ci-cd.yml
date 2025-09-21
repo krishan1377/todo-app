@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: secretes
     steps:
-    - name: Checkout Codes
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - name: Debug Vars
