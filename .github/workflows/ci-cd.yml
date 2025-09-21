@@ -44,6 +44,15 @@ jobs:
     steps:
     - name: SSH into EC2 and Deploy
       uses: appleboy/ssh-action@v0.1.8
+
+    - name: Debug SSH Key
+      run: |
+        if [ -z "${{ secrets.EC2_SSH_KEY }}" ]; then
+          echo "❌ SSH key is missing"
+        else
+          echo "✅ SSH key is available"
+        fi  
+        
       with:
         host: ${{ vars.EC2_HOST }}
         username: ubuntu
