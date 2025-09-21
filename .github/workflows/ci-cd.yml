@@ -18,6 +18,7 @@ jobs:
         registry: docker.io
         username: ${{ vars.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        ecr: false
 
     # ---- Build Backend ----
     - name: Build and Push Backend
