@@ -88,3 +88,18 @@ jobs:
             --name todo-frontend \
             -p 80:80 \
             ${{ vars.DOCKER_HUB_USERNAME }}/todo-frontend:latest
+
+          # --- Ensure DB Schema Exists ---
+          sudo apt-get update -y
+          sudo apt-get install -y postgresql-client
+
+          PGPASSWORD=${{ secrets.RDS_PASSWORD }} psql \
+            --host=${{ vars.RDS_HOST }} \
+            --port=5432 \
+            --username=postgres \
+            --dbname=todo_db \
+            -c "CREATE TABLE IF NOT EXISTS todos (
+                  id SERIAL PRIMARY KEY,
+                  task TEXT NOT NULL,
+                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );"
