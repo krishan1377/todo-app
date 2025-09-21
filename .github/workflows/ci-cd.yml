@@ -52,7 +52,6 @@ jobs:
         else
           echo "✅ SSH key is available"
         fi  
-        
       with:
         host: ${{ vars.EC2_HOST }}
         username: ubuntu
